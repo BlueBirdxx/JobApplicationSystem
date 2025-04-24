@@ -1,5 +1,7 @@
 ﻿using Data.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
+using Repository.Repositories;
+using Service.Services;
 
 namespace JobApplicationSystem.Extensions
 {
@@ -12,6 +14,18 @@ namespace JobApplicationSystem.Extensions
 
         public static void BusinessServices(this IServiceCollection services)
         {
+            services.AddScoped<ICandidateService, CandidateService>();
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IJobApplicationService, JobApplicationService>();
+            services.AddScoped<IJobPostService, JobPostService>();
+        }
+
+        public static void BusinessRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<ICandidateRepository, CandidateRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
+            services.AddScoped<IJobPostRepository, JobPostRepository>();
         }
 
         public static void ConfigCors(this IServiceCollection services)
